@@ -83,6 +83,7 @@ app.get('/posts',(req,res)=>{
         
 })
 })
+
 app.post('/login',async (req,res)=>{
     const {email,password}=req.body
     try{
@@ -104,10 +105,11 @@ app.post('/login',async (req,res)=>{
         }
     }
     catch(e){
+        console.log(e)
         res.status(400).json(e)   
-    }
-    
+    }  
 })
+
 app.post('/upload',upload.single('file'),async (req,res)=>{
     const {originalname,path}=req.file;
     const parts=originalname.split('.')
