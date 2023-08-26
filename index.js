@@ -86,7 +86,9 @@ app.post('/login',async (req,res)=>{
             if(cmp){
                 jwt.sign({exist},"abc",{},(err,token)=>{
                     if(err) throw err
-                    res.cookie("token",token).json(exist)
+                    res.cookie("token",token)
+                    res.cookie("example",123)
+                    res.json(exist)
                 })
             }
             else{
