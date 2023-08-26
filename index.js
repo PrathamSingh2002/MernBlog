@@ -28,19 +28,12 @@ const hash=async (password)=>{
       }
       return null
 }
-// app.use(cors())
-// const corsOptions = {
-//     origin: '*', // Change this to the specific origin(s) you want to allow
-//     methods: 'GET,POST', // Specify the HTTP methods you want to allow
-//     allowedHeaders: 'Content-Type,Authorization', // Specify the allowed headers
-//   };
-  
-//   app.use(cors(corsOptions));
 const corsOptions = {
     origin: 'http://localhost:3000', // Specify the exact origin you want to allow
     credentials: true, // Allow credentials like cookies to be sent
-  };
-  app.use(cors(corsOptions))
+};
+app.use(cors(corsOptions))
+app.set("trust proxy", 1);
 app.use(express.json())
 app.use(cp())
 app.post('/signup',async (req,res)=>{
@@ -93,14 +86,7 @@ app.post('/login',async (req,res)=>{
             if(cmp){
                 jwt.sign({exist},"abc",{},(err,token)=>{
                     if(err) throw err
-                    res.cookie('token', token, {
-                        httpOnly: true,
-                        secure: false, // Set this to false for development on localhost
-                        sameSite: 'strict', // Optional: Adjust this as needed
-                        path: '/', // Allow the cookie to be accessible from all paths
-                        // other options like domain and expires
-                      }).json(exist);
-                    // res.cookie("token",token).json(exist)
+                    res.cookie("token",token).json(exist)
                 })
             }
             else{
