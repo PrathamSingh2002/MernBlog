@@ -29,7 +29,7 @@ const hash=async (password)=>{
       return null
 }
 const corsOptions = {
-    origin: 'http://localhost:3000', // Specify the exact origin you want to allow
+    origin: '*', // Specify the exact origin you want to allow
     credentials: true, // Allow credentials like cookies to be sent
 };
 app.use(cors(corsOptions))
