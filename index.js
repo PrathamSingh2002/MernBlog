@@ -28,7 +28,14 @@ const hash=async (password)=>{
       }
       return null
 }
-app.use(cors())
+// app.use(cors())
+const corsOptions = {
+    origin: '*', // Change this to the specific origin(s) you want to allow
+    methods: 'GET,POST', // Specify the HTTP methods you want to allow
+    allowedHeaders: 'Content-Type,Authorization', // Specify the allowed headers
+  };
+  
+  app.use(cors(corsOptions));
 app.use(express.json())
 app.use(cp())
 app.post('/signup',async (req,res)=>{
