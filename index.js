@@ -34,10 +34,6 @@ app.use("*",cors({
     origin:true,
     credentials:true
 }))
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', '*');
-    next();
-  });
 app.use(express.json())
 app.post('/signup',async (req,res)=>{
     const {name,email,password}=req.body
