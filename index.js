@@ -198,6 +198,10 @@ app.get('/totalposts',async (req,res)=>{
         res.status(400).send('error')
     }
 })
+app.get("/".at(req,res)){
+    res.cookie("test","12131232")
+    res.send("TESTING")
+}
 app.listen(5000,()=>{
     console.log("listening")
 })
