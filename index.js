@@ -29,13 +29,16 @@ const hash=async (password)=>{
       return null
 }
 
+app.use(cp())
 app.use("*",cors({
     origin:true,
     credentials:true
 }))
-app.set("trust proxy", 1);
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });
 app.use(express.json())
-app.use(cp())
 app.post('/signup',async (req,res)=>{
     const {name,email,password}=req.body
     try{
