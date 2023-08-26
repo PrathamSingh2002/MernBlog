@@ -28,11 +28,11 @@ const hash=async (password)=>{
       }
       return null
 }
-const corsOptions = {
-    origin: 'http://localhost:3000', // Specify the exact origin you want to allow
-    credentials: true, // Allow credentials like cookies to be sent
-};
-app.use(cors(corsOptions))
+
+app.use("*",cors({
+    origin:true,
+    credentials:true
+}))
 app.set("trust proxy", 1);
 app.use(express.json())
 app.use(cp())
